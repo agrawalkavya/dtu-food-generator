@@ -12,6 +12,20 @@ const foodData = {
   "Raydee Cafe": ["Veg Burger", "Mexican Burger", "Raydee Special Double Patty Burger", "Paneer Crunch Burger", "Veg Loaded Sandwich", "Cheese Sandwich", "Aloo Sandwich", "Salted Fries", "Peri Peri Fries", "Cheesy Fries", "Plain Maggi", "Veg Maggi", "Cheese Maggi", "Butter Toast", "Veggie Strips", "Nuggets", "Potato Cheesy Shots", "Veg Crunchy Wrap", "Paneer Crunchy Wrap", "Dip for Fries", "Extra Cheese Slice", "Water Bottle", "Vanilla Muffin", "Blueberry Muffin", "Chocolate Muffin", "Doughnut", "Cake Jar", "Brownie", "Walnut Brownie"]
 };
 
+const imageData = {
+  "Udupi": "images/udupi.jpg",
+  "Bistro": "images/bistro.jpg",
+  "HIMS": "images/hims.jpg",
+  "DelTech Cafe": "images/deltechcafe.jpg",
+  "HPMC": "images/hpmc.jpg",
+  "Stall at Amul": "images/amul.jpg",
+  "Dosa Plaza": "images/dosaplaza.jpg",
+  "Dazzledine": "images/dazzledine.jpg",
+  "KitKat Zone": "images/kitkat.jpg",
+  "Nescafe": "images/nescafe.jpg",
+  "Raydee Cafe": "images/raydee.jpg"
+};
+
 function getRandomFood() {
   const places = Object.keys(foodData);
   const randomPlace = places[Math.floor(Math.random() * places.length)];
@@ -24,6 +38,10 @@ function suggestFood() {
   const suggestion = getRandomFood();
   const resultElement = document.getElementById("result");
   resultElement.textContent = `How about "${suggestion.food}" from ${suggestion.place}?`;
-}
 
+  // Update image
+  const imageElement = document.getElementById("canteenImage");
+  imageElement.src = imageData[suggestion.place];
+  imageElement.style.display = "block"; // show the image
+}
 document.getElementById("generateButton").addEventListener("click", suggestFood);
