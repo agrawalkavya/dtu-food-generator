@@ -40,8 +40,10 @@ function suggestFood() {
   resultElement.textContent = `How about "${suggestion.food}" from ${suggestion.place}?`;
 
   // Update image
-  const imageElement = document.getElementById("canteenImage");
-  imageElement.src = imageData[suggestion.place];
-  imageElement.style.display = "block"; // show the image
+  const canteenImage = document.getElementById("canteenImage");
+  canteenImage.src = "images/" + result.place + ".jpg";
+  // const imageElement = document.getElementById("canteenImage");
+  // imageElement.src = imageData[suggestion.place];
+  // imageElement.style.display = "block"; // show the image
 }
 document.getElementById("generateButton").addEventListener("click", suggestFood);
