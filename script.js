@@ -27,44 +27,17 @@ const imageData = {
   "Raydee Cafe": "images/raydee.jpg"
 };
 
+// Function to pick random food and place
 function getRandomFood() {
   const places = Object.keys(foodData);
   const randomPlace = places[Math.floor(Math.random() * places.length)];
-  const foods = foodData[randomPlace];
-  const randomFood = foods[Math.floor(Math.random() * foods.length)];
-  return { place: randomPlace, food: randomFood };
+  const foodItems = foodData[randomPlace];
+  const randomFood = foodItems[Math.floor(Math.random() * foodItems.length)];
+
+  // Update the DOM with random food and place
+  document.getElementById("food-item").textContent = randomFood;
+  document.getElementById("food-place").textContent = randomPlace;
 }
 
-function suggestFood() {
-  const suggestion = getRandomFood();
-  const resultElement = document.getElementById("result");
-  resultElement.textContent = `How about "${suggestion.food}" from ${suggestion.place}?`;
-
-  // Update image
-  const imageElement = document.getElementById("canteenImage");
-  imageElement.src = imageData[suggestion.place];
-  imageElement.style.display = "block"; // show the image
-}
-
-document.getElementById('generate-btn').addEventListener('click', generateRandomFood);
-
-// Get button and output spans
-const button = document.getElementById("generate-btn");
-const foodItem = document.getElementById("food-item");
-const foodPlace = document.getElementById("food-place");
-
-// Button click event
-button.addEventListener("click", function() {
-  // Get random place
-  const places = Object.keys(foodData);
-  const randomPlace = places[Math.floor(Math.random() * places.length)];
-
-  // Get random food from that place
-  const items = foodData[randomPlace];
-  const randomFood = items[Math.floor(Math.random() * items.length)];
-
-  // Update the DOM
-  foodItem.textContent = randomFood;
-  foodPlace.textContent = randomPlace;
-});
-
+// Attach the function to the button click event
+document.getElementById("generate-btn").addEventListener("click", getRandomFood);
