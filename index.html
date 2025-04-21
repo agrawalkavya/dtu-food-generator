@@ -1,71 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>What Should I Eat?</title>
-  <!-- <link rel="stylesheet" href="style.css"> -->
   <style>
     body {
       margin: 0;
-      background-color: #0033a0;
-      color: #ffffff;
+      background-color: #fdf5e6;
+      color: #1a1a1a;
       font-family: 'Georgia', serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       text-align: center;
+      padding: 3rem 1rem;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
+      font-weight: normal;
       margin-bottom: 2rem;
-      line-height: 1.2;
     }
 
-    .highlight {
+    .circle {
       display: inline-block;
-      padding: 0 0.3em;
-      border-bottom: 2px solid #ffffff;
-      font-style: italic;
+      position: relative;
     }
 
-    #food-output {
-      font-size: 2rem;
-      margin-top: 1rem;
+    .circle::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -5px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid #4a7eb7;
+      border-radius: 50%;
+      transform: rotate(-5deg);
+      z-index: -1;
+    }
+
+    .strike {
+      text-decoration: line-through;
     }
 
     button {
-      margin-top: 3rem;
-      background: none;
-      color: #ffffff;
-      border: 2px solid #ffffff;
-      padding: 0.5em 1em;
-      font-size: 1rem;
+      background: #c36b4c;
+      color: #fff;
+      border: none;
+      padding: 0.7em 1.5em;
+      font-size: 1.2rem;
       cursor: pointer;
+      border-radius: 5px;
       font-family: 'Georgia', serif;
+      margin: 2rem 0;
     }
 
     button:hover {
-      background-color: #ffffff;
-      color: #0033a0;
+      background: #a8523b;
+    }
+
+    .output {
+      font-size: 1.7rem;
+      margin-top: 1.5rem;
     }
 
     .line {
-      width: 80px;
+      width: 90%;
       height: 2px;
-      background: #fff;
+      background: #1a1a1a;
       margin: 2rem auto;
     }
+
+    /* Optionally add illustration placeholders */
+    .illustration-left, .illustration-right {
+      position: absolute;
+      bottom: 20px;
+      width: 150px;
+      height: 150px;
+      background-color: transparent;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    .illustration-left {
+      left: 20px;
+    }
+
+    .illustration-right {
+      right: 20px;
+    }
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🍴 What Should I Eat?</h1>
-    <button id="generateButton">Tell me!</button>
-    <p id="result">Click the button to get a food suggestion.</p>
+
+  <div class="line"></div>
+
+  <h1>
+    <span class="circle">what</span> should i <span class="strike">eat</span>?
+  </h1>
+
+  <button onclick="generateRandomFood()">tell me!</button>
+
+  <div class="output">
+    How about <span id="food-item">_______</span> from <span id="food-place">_______</span>
+  </div>
+
   </div>
   <script src="script.js"></script>
   <img id="canteenImage" src="" alt="Canteen Image" style="display:none; max-width:300px; margin-top:20px;">
