@@ -26,18 +26,28 @@ const imageData = {
   "Nescafe": "images/nescafe.jpg",
   "Raydee Cafe": "images/raydee.jpg"
 };
+// your existing foodData and imageData objects (from your uploaded script.js file)
 
-// Function to pick random food and place
 function getRandomFood() {
   const places = Object.keys(foodData);
   const randomPlace = places[Math.floor(Math.random() * places.length)];
-  const foodItems = foodData[randomPlace];
-  const randomFood = foodItems[Math.floor(Math.random() * foodItems.length)];
-
-  // Update the DOM with random food and place
-  document.getElementById("food-item").textContent = randomFood;
-  document.getElementById("food-place").textContent = randomPlace;
+  const foods = foodData[randomPlace];
+  const randomFood = foods[Math.floor(Math.random() * foods.length)];
+  return { place: randomPlace, food: randomFood };
 }
 
-// Attach the function to the button click event
-document.getElementById("generate-btn").addEventListener("click", getRandomFood);
+function suggestFood() {
+  const suggestion = getRandomFood();
+
+  // update text result
+  document.getElementById("food-item").textContent = suggestion.food;
+  document.getElementById("food-place").textContent = suggestion.place;
+
+  // update image
+  const imageElement = document.getElementById("canteenImage");
+  imageElement.src = imageData[suggestion.place];
+  imageElement.style.display = "block";
+}
+
+// fixed event listener
+document.getElementById("generate-btn").addEventListener("click", suggestFood);
