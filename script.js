@@ -45,4 +45,5 @@ function suggestFood() {
   imageElement.src = imageData[suggestion.place];
   imageElement.style.display = "block"; // show the image
 }
-document.getElementById("generateButton").addEventListener("click", suggestFood);
+
+document.getElementById('generate-btn').addEventListener('click', generateRandomFood);
