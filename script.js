@@ -47,3 +47,24 @@ function suggestFood() {
 }
 
 document.getElementById('generate-btn').addEventListener('click', generateRandomFood);
+
+// Get button and output spans
+const button = document.getElementById("generate-btn");
+const foodItem = document.getElementById("food-item");
+const foodPlace = document.getElementById("food-place");
+
+// Button click event
+button.addEventListener("click", function() {
+  // Get random place
+  const places = Object.keys(foodData);
+  const randomPlace = places[Math.floor(Math.random() * places.length)];
+
+  // Get random food from that place
+  const items = foodData[randomPlace];
+  const randomFood = items[Math.floor(Math.random() * items.length)];
+
+  // Update the DOM
+  foodItem.textContent = randomFood;
+  foodPlace.textContent = randomPlace;
+});
+
